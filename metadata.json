@@ -1,0 +1,6 @@
+{
+  "name": "Free QR Code Generator",
+  "description": "Free, modern, and privacy-friendly QR code generator. Instantly create and download custom QR codes for URLs, text, Wi-Fi, email, and phone numbers.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
