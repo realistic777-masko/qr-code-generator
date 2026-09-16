@@ -124,6 +124,8 @@ export default function App() {
             </div>
           </div>
         </div>
+        {/* Help & Guides */}
+        <Helpsection />
 
         {/* SEO & Educational About Section */}
         <button 
