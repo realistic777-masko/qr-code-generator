@@ -1,152 +1,303 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 export function HelpSection() {
+  const [openSection, setOpenSection] = useState<string | null>(null);
+
+  const toggleSection = (section: string) => {
+    setOpenSection(openSection === section ? null : section);
+  };
+
   return (
-    <section className="mt-10 bg-white border border-slate-200 rounded-3xl shadow-sm p-6 sm:p-8">
+    <section className="mt-10 mb-8 bg-white border border-slate-200 shadow-sm rounded-3xl p-5 sm:p-8">
+      {/* Header */}
       <div className="text-center mb-8">
+        <div className="text-4xl mb-3">📚</div>
+
         <h2 className="text-2xl sm:text-3xl font-bold text-slate-900">
-          📚 Help & How To Guides
+          Help & Guides
         </h2>
-        <p className="mt-2 text-slate-600">
-          Learn how to create the different types of QR codes.
+
+        <p className="text-slate-600 mt-2 max-w-2xl mx-auto">
+          Learn how to create different types of links and QR codes using
+          our generator.
         </p>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div className="space-y-3">
 
         {/* WhatsApp */}
-        <div className="bg-green-50 border border-green-200 rounded-2xl p-5">
-          <h3 className="text-lg font-bold text-green-800">
-            💬 How to create a WhatsApp link
-          </h3>
+        <div className="border border-slate-200 rounded-2xl overflow-hidden">
+          <button
+            type="button"
+            onClick={() => toggleSection('whatsapp')}
+            className="w-full flex items-center justify-between p-4 text-left bg-slate-50 hover:bg-slate-100 transition"
+          >
+            <span className="flex items-center gap-3 font-semibold text-slate-900">
+              <span className="text-2xl">💬</span>
+              WhatsApp Link
+            </span>
 
-          <p className="mt-2 text-slate-700">
-            Start with <strong>https://wa.me/</strong>, then add your
-            country code followed by the phone number.
-          </p>
+            <span className="text-xl">
+              {openSection === 'whatsapp' ? '−' : '+'}
+            </span>
+          </button>
 
-          <p className="mt-3 font-semibold">Example — Ghana 🇬🇭</p>
+          {openSection === 'whatsapp' && (
+            <div className="p-5 text-slate-700 space-y-4">
+              <p>
+                You can create a WhatsApp link that opens a chat directly
+                with a phone number.
+              </p>
 
-          <div className="mt-2 bg-white rounded-lg p-3 font-mono text-sm break-all">
-            https://wa.me/2335927862345
-          </div>
+              <div className="bg-slate-100 rounded-xl p-4">
+                <p className="font-semibold mb-2">Step 1: Start with</p>
+                <code className="text-blue-600 break-all">
+                  https://wa.me/
+                </code>
+              </div>
 
-          <p className="mt-3 text-sm text-slate-600">
-            233 = Ghana country code. Do not add the + sign, spaces or
-            hyphens.
-          </p>
+              <div className="bg-slate-100 rounded-xl p-4">
+                <p className="font-semibold mb-2">
+                  Step 2: Add the country code
+                </p>
+
+                <p>
+                  For Ghana, the country code is <strong>233</strong>.
+                </p>
+
+                <p className="mt-2">
+                  Do not add the <strong>+</strong> sign.
+                </p>
+              </div>
+
+              <div className="bg-slate-100 rounded-xl p-4">
+                <p className="font-semibold mb-2">
+                  Step 3: Add the phone number
+                </p>
+
+                <p>
+                  Example phone number:
+                  <strong> 5927862345</strong>
+                </p>
+              </div>
+
+              <div className="bg-blue-50 border border-blue-200 rounded-xl p-4">
+                <p className="font-semibold text-blue-900 mb-2">
+                  Your WhatsApp link:
+                </p>
+
+                <code className="text-blue-700 break-all">
+                  https://wa.me/2335927862345
+                </code>
+              </div>
+
+              <p className="text-sm text-slate-500">
+                💡 Important: Don't include spaces, dashes, brackets, or the
+                + sign in the phone number.
+              </p>
+            </div>
+          )}
         </div>
 
         {/* Website */}
-        <div className="bg-blue-50 border border-blue-200 rounded-2xl p-5">
-          <h3 className="text-lg font-bold text-blue-800">
-            🌐 How to create a Website QR Code
-          </h3>
+        <div className="border border-slate-200 rounded-2xl overflow-hidden">
+          <button
+            type="button"
+            onClick={() => toggleSection('website')}
+            className="w-full flex items-center justify-between p-4 text-left bg-slate-50 hover:bg-slate-100 transition"
+          >
+            <span className="flex items-center gap-3 font-semibold text-slate-900">
+              <span className="text-2xl">🌐</span>
+              Website Link
+            </span>
 
-          <p className="mt-2 text-slate-700">
-            Enter the complete website address, including
-            <strong> https://</strong>.
-          </p>
+            <span className="text-xl">
+              {openSection === 'website' ? '−' : '+'}
+            </span>
+          </button>
 
-          <div className="mt-3 bg-white rounded-lg p-3 font-mono text-sm break-all">
-            https://example.com
-          </div>
+          {openSection === 'website' && (
+            <div className="p-5 text-slate-700 space-y-4">
+              <p>
+                Create a QR code that opens a website when scanned.
+              </p>
 
-          <p className="mt-3 text-sm text-slate-600">
-            Anyone who scans the QR code can open the website.
-          </p>
-        </div>
+              <div className="bg-slate-100 rounded-xl p-4">
+                <p className="font-semibold mb-2">Example:</p>
 
-        {/* Phone */}
-        <div className="bg-purple-50 border border-purple-200 rounded-2xl p-5">
-          <h3 className="text-lg font-bold text-purple-800">
-            📞 How to create a Phone QR Code
-          </h3>
+                <code className="text-blue-600 break-all">
+                  https://example.com
+                </code>
+              </div>
 
-          <p className="mt-2 text-slate-700">
-            Enter the phone number you want people to call.
-          </p>
-
-          <div className="mt-3 bg-white rounded-lg p-3 font-mono text-sm">
-            +233 59 278 2345
-          </div>
-
-          <p className="mt-3 text-sm text-slate-600">
-            Scanning the QR code can open the phone dialer with the
-            number ready to call.
-          </p>
+              <p>
+                Enter the complete website address, including
+                <strong> https://</strong>, into the Website section of the
+                generator.
+              </p>
+            </div>
+          )}
         </div>
 
         {/* Email */}
-        <div className="bg-orange-50 border border-orange-200 rounded-2xl p-5">
-          <h3 className="text-lg font-bold text-orange-800">
-            📧 How to create an Email QR Code
-          </h3>
+        <div className="border border-slate-200 rounded-2xl overflow-hidden">
+          <button
+            type="button"
+            onClick={() => toggleSection('email')}
+            className="w-full flex items-center justify-between p-4 text-left bg-slate-50 hover:bg-slate-100 transition"
+          >
+            <span className="flex items-center gap-3 font-semibold text-slate-900">
+              <span className="text-2xl">📧</span>
+              Email Link
+            </span>
 
-          <p className="mt-2 text-slate-700">
-            Enter the email address. You can also add a subject and
-            message.
-          </p>
+            <span className="text-xl">
+              {openSection === 'email' ? '−' : '+'}
+            </span>
+          </button>
 
-          <div className="mt-3 bg-white rounded-lg p-3 font-mono text-sm break-all">
-            example@email.com
-          </div>
+          {openSection === 'email' && (
+            <div className="p-5 text-slate-700 space-y-4">
+              <p>
+                An email QR code can open the user's email application with
+                the email address, subject, and message already prepared.
+              </p>
 
-          <p className="mt-3 text-sm text-slate-600">
-            When scanned, it can open the user's email app with the
-            information prepared.
-          </p>
+              <div className="bg-slate-100 rounded-xl p-4">
+                <p className="font-semibold mb-2">Example:</p>
+
+                <p>
+                  Email:
+                  <strong> hello@example.com</strong>
+                </p>
+
+                <p>
+                  Subject:
+                  <strong> Hello</strong>
+                </p>
+
+                <p>
+                  Message:
+                  <strong> Thanks for contacting us!</strong>
+                </p>
+              </div>
+
+              <p>
+                Enter these details in the Email section and generate your
+                QR code.
+              </p>
+            </div>
+          )}
+        </div>
+
+        {/* Phone */}
+        <div className="border border-slate-200 rounded-2xl overflow-hidden">
+          <button
+            type="button"
+            onClick={() => toggleSection('phone')}
+            className="w-full flex items-center justify-between p-4 text-left bg-slate-50 hover:bg-slate-100 transition"
+          >
+            <span className="flex items-center gap-3 font-semibold text-slate-900">
+              <span className="text-2xl">📞</span>
+              Phone Call Link
+            </span>
+
+            <span className="text-xl">
+              {openSection === 'phone' ? '−' : '+'}
+            </span>
+          </button>
+
+          {openSection === 'phone' && (
+            <div className="p-5 text-slate-700 space-y-4">
+              <p>
+                A phone QR code allows someone to scan the code and quickly
+                start a phone call.
+              </p>
+
+              <div className="bg-slate-100 rounded-xl p-4">
+                <p className="font-semibold mb-2">Example:</p>
+
+                <p>
+                  Country code:
+                  <strong> +233</strong>
+                </p>
+
+                <p>
+                  Phone number:
+                  <strong> 5927862345</strong>
+                </p>
+              </div>
+
+              <p>
+                Enter your country code and phone number in the Phone section
+                of the generator.
+              </p>
+            </div>
+          )}
         </div>
 
         {/* Wi-Fi */}
-        <div className="bg-cyan-50 border border-cyan-200 rounded-2xl p-5">
-          <h3 className="text-lg font-bold text-cyan-800">
-            📶 How to create a Wi-Fi QR Code
-          </h3>
+        <div className="border border-slate-200 rounded-2xl overflow-hidden">
+          <button
+            type="button"
+            onClick={() => toggleSection('wifi')}
+            className="w-full flex items-center justify-between p-4 text-left bg-slate-50 hover:bg-slate-100 transition"
+          >
+            <span className="flex items-center gap-3 font-semibold text-slate-900">
+              <span className="text-2xl">📶</span>
+              Wi-Fi QR Code
+            </span>
 
-          <p className="mt-2 text-slate-700">
-            Enter your Wi-Fi network name (SSID), password and security
-            type.
-          </p>
+            <span className="text-xl">
+              {openSection === 'wifi' ? '−' : '+'}
+            </span>
+          </button>
 
-          <div className="mt-3 bg-white rounded-lg p-3 text-sm">
-            <p><strong>Wi-Fi name:</strong> MyHomeWiFi</p>
-            <p><strong>Password:</strong> MyPassword123</p>
-            <p><strong>Security:</strong> WPA</p>
-          </div>
+          {openSection === 'wifi' && (
+            <div className="p-5 text-slate-700 space-y-4">
+              <p>
+                A Wi-Fi QR code lets people connect to a Wi-Fi network by
+                scanning the QR code instead of typing the password.
+              </p>
 
-          <p className="mt-3 text-sm text-slate-600">
-            Guests can scan the QR code to connect to the Wi-Fi without
-            manually typing the password.
-          </p>
-        </div>
+              <div className="bg-slate-100 rounded-xl p-4">
+                <p className="font-semibold mb-2">You need:</p>
 
-        {/* Text */}
-        <div className="bg-pink-50 border border-pink-200 rounded-2xl p-5">
-          <h3 className="text-lg font-bold text-pink-800">
-            📝 How to create a Text QR Code
-          </h3>
+                <ul className="list-disc list-inside space-y-1">
+                  <li>Wi-Fi name (SSID)</li>
+                  <li>Wi-Fi password</li>
+                  <li>Security type</li>
+                </ul>
+              </div>
 
-          <p className="mt-2 text-slate-700">
-            Enter any message, instructions, address or other text you
-            want people to see after scanning.
-          </p>
+              <div className="bg-blue-50 border border-blue-200 rounded-xl p-4">
+                <p className="font-semibold text-blue-900 mb-2">
+                  Example:
+                </p>
 
-          <div className="mt-3 bg-white rounded-lg p-3 text-sm">
-            Welcome to our business! Thank you for visiting us.
-          </div>
+                <p>Wi-Fi name: MyHomeWiFi</p>
+                <p>Password: MyPassword123</p>
+                <p>Security: WPA</p>
+              </div>
+
+              <p>
+                Enter your Wi-Fi information and generate the QR code. Anyone
+                with a compatible phone can scan it to connect.
+              </p>
+            </div>
+          )}
         </div>
 
       </div>
 
-      <div className="mt-8 bg-slate-50 border border-slate-200 rounded-2xl p-5">
-        <h3 className="font-bold text-slate-900">
-          💡 Quick Tip
-        </h3>
-        <p className="mt-2 text-slate-600">
-          Always test your QR code with your phone before sharing or
-          printing it. This helps make sure the information and link work
-          correctly.
+      {/* Bottom Tip */}
+      <div className="mt-6 bg-slate-50 border border-slate-200 rounded-2xl p-4 text-center">
+        <p className="font-semibold text-slate-900">
+          💡 Need help?
+        </p>
+
+        <p className="text-sm text-slate-600 mt-1">
+          Tap any section above to see step-by-step instructions.
         </p>
       </div>
     </section>
