@@ -43,9 +43,8 @@ export default function App() {
 
   const handleConfigUpdate = (updates: Partial<QRConfig>) => {
     setConfig((prev) => ({ ...prev, ...updates }));
-  };
-
-  const handleClear = () => {
+  }; 
+  
     const handleShare = async () => {
   const shareData = {
     title: 'Free QR Code Generator',
@@ -64,6 +63,7 @@ export default function App() {
     alert('Site link copied! You can now share it.');
   }
 };
+ const handleClear = () => {
     setQrState((prev) => ({
       ...prev,
       url: '',
