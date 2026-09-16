@@ -7,7 +7,6 @@ import { AboutSection } from './components/AboutSection';
 import { Footer } from './components/Footer';
 import { QRConfig, QRState, QRType } from './types';
 import { getQRPayload } from './utils/qrHelper';
-import { HelpSection } from './components/HelpSection';
 
 const INITIAL_STATE: QRState = {
   type: 'url',
@@ -125,7 +124,7 @@ export default function App() {
           </div>
         </div>
         {/* Help & Guides */}
-        <Helpsection />
+        {/* <HelpSection /> */}
 
         {/* SEO & Educational About Section */}
         <button 
