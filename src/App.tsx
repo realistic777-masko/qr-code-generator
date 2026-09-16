@@ -46,6 +46,24 @@ export default function App() {
   };
 
   const handleClear = () => {
+    const handleShare = async () => {
+  const shareData = {
+    title: 'Free QR Code Generator',
+    text: 'Create a free QR code instantly!',
+    url: window.location.href,
+  };
+
+  if (navigator.share) {
+    try {
+      await navigator.share(shareData);
+    } catch (error) {
+      console.log('Share cancelled');
+    }
+  } else {
+    await navigator.clipboard.writeText(window.location.href);
+    alert('Site link copied! You can now share it.');
+  }
+};
     setQrState((prev) => ({
       ...prev,
       url: '',
