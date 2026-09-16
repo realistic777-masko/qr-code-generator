@@ -107,6 +107,13 @@ export default function App() {
         </div>
 
         {/* SEO & Educational About Section */}
+        <button 
+          onClick={handleShare}
+          classname="mx-auto mb-6 rounded-x1 bg-blue-600 px-6 font-semibold text-white shadow hover:bg-blue-700"
+        >
+          📤 share this site
+        </button>
+        
         <AboutSection />
       </main>
 
