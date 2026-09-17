@@ -4,7 +4,7 @@ import { TypeSelector } from './components/TypeSelector';
 import { InputForms } from './components/InputForms';
 import { QRCodePreview } from './components/QRCodePreview';
 import { AboutSection } from './components/AboutSection';
-import { HelpSection } from ' ./components/HelpSection';
+import { HelpSection } from './components/HelpSection';
 import { Footer } from './components/Footer';
 import { QRConfig, QRState, QRType } from './types';
 import { getQRPayload } from './utils/qrHelper';
